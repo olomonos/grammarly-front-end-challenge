@@ -8,25 +8,40 @@ export type Props = {
 
 export const Building: React.StatelessComponent<Props> = ({building}) => {
     
-    const buildingGrid = {
+    const buildingGridStyles = {
         gridTemplateColumns: 'repeat(' + building[0].length + ', 1fr)',
         gridTemplateRows: 'repeat(' + building.length + ', 1fr)'      
     };
     
+    const frontDoorStyles = {
+        width: '50%',
+        height: '90%',
+        'align-self': 'end'
+    };
+
     let apartments = [];
     apartments = building.map((floor, i) => {
         return (
             floor.map((room, j) => 
-                <Apartment key={j} coord={{floor: building.length - i - 1, room: j}} /> 
+                <Apartment 
+                    key={i.toString() + ',' + j.toString()} 
+                    coord={{floor: building.length - i - 1, room: j}} 
+                /> 
             )
         );
     });
+
+    apartments[building.length - 1][0] = <Apartment
+        key={'0,0'}
+        coord={{floor: 0, room: 0}} 
+        style={frontDoorStyles}
+    />;
 
     return (
         <div className='building-field'>
             <div 
                 className='building'
-                style={buildingGrid}
+                style={buildingGridStyles}
             >
                 {apartments}
             </div>
