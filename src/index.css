@@ -22,15 +22,13 @@ body {
   align-items: center;
   justify-items: center;
   height: 100%;
-  border: 3px solid darkgrey;
-  border-radius: 3px;
+  border: 2px solid darkgrey;
+  border-radius: 1px;
 }
 
 .apartment {
-  /* position: relative;
-  top: 3px; */
   width: 80%;
   height: 80%;
-  border: 3px solid darkgrey;
-  border-radius: 3px;
+  border: 2px solid darkgrey;
+  border-radius: 1px;
 }
