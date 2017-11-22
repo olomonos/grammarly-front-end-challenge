@@ -23,10 +23,14 @@ body {
   justify-items: center;
   height: 100%;
   border: 3px solid darkgrey;
+  border-radius: 3px;
 }
 
 .apartment {
-  border: 3px solid darkgrey;
+  /* position: relative;
+  top: 3px; */
   width: 80%;
   height: 80%;
+  border: 3px solid darkgrey;
+  border-radius: 3px;
 }

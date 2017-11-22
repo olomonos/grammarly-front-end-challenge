@@ -14,9 +14,14 @@ export const Building: React.StatelessComponent<Props> = ({building}) => {
     };
     
     const frontDoorStyles = {
+        // position: 'relative',
+        // top: '3px',
         width: '50%',
         height: '90%',
-        'align-self': 'end'
+        'align-self': 'end',
+        borderBottom: 'none',
+        borderBottomLeftRadius: '0',
+        borderBottomRightRadius: '0'
     };
 
     let apartments = [];
