@@ -2,11 +2,13 @@ import {combineReducers} from 'redux';
 import {Store} from '../types';
 import {Reducer} from './reducer';
 import {times} from './times';
-// import {from} from './';
-// import {to} from './;
+import {fromCoord} from './from-coord';
+import {toCoord} from './to-coord';
+import {nextBuildingSize} from './next-building-size';
 
 export default combineReducers({
     times,
-    // from,
-    // to
+    fromCoord,
+    toCoord,
+    nextBuildingSize
 }) as Reducer<Store>;

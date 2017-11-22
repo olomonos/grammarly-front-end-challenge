@@ -4,13 +4,21 @@ body {
   font-family: sans-serif;
 }
 
+/* when rooms/floors > 30 -> .app.height: 150% */
+
 .app {
   position: absolute;
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-columns: 1fr 6fr 1fr; /* Change to make building +- square */
   grid-template-rows: 1fr 6fr 1fr;
+  padding: 3%;
+}
+
+.controls {
+  grid-area: 1 / 1 / 2 / 4;
+  justify-self: center;
 }
 
 .building-field {
@@ -31,4 +39,8 @@ body {
   height: 80%;
   border: 2px solid darkgrey;
   border-radius: 1px;
+}
+
+.input-field {
+  display: inline-block;
 }

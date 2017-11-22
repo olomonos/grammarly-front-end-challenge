@@ -1,7 +1,9 @@
+
 export type Store = {
     times: Times,
-    from: Coord,
-    to: Coord
+    fromCoord: Coord,
+    toCoord: Coord,
+    nextBuildingSize: BuildingSize
 }
 
 export type Coord = {floor: number, room: number};
@@ -15,3 +17,8 @@ export type Apt = {
 export type Building = Apt[][];
 
 export type Times = number[][];
+
+export type BuildingSize = {
+    floors: number,
+    rooms: number
+};
