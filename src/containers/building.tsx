@@ -1,33 +1,21 @@
 import {connect} from 'react-redux';
 import {Building, Props} from '../components/building';
 import {Store} from '../store';
-// import {createSelector} from 'reselect';
+import {removeStep} from '../store/actions/remove-step';
 
-export type StateProps = Pick<Props, 'building'>;
+export type StateProps = Pick<Props, 'building' | 'currentLiftCoord'>;
 
-// const timesSelector = (state: Store) => state.times;
-// const getBuilding = createSelector(
-//     timesSelector,
-//     (times) => {
-//         let building: Store['times'] = [];
-    
-//         for (let y = 0; y < times.length; y++) {
-//             let buildingsFloor: number[] = [];
-//             for (let x = 0; x < times[0].length; x++) {
-//                 buildingsFloor.push(times[times.length - 1 - y][x]);
-//             }
-//             building.push(buildingsFloor);
-//         }
+export type DispatchProps = Pick<Props, 'onLiftArrived'>;
 
-//         return building;
-//     }
-// );
-
-export default connect<StateProps>(
+export default connect<StateProps, DispatchProps>(
     (state: Store) => ({
-        building: state.times
+        building: state.times,
+        currentLiftCoord: state.optimalPath[0]
     }),
     dispatch => ({
+        onLiftArrived() {
+            dispatch(removeStep())
+        }
     })
 )(
     Building

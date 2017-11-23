@@ -3,17 +3,15 @@ import {Controls, Props} from '../components/controls';
 import {setNextBuildingSize} from '../store/actions/set-next-building-size';
 import {setFromCoord} from '../store/actions/set-from-coord';
 import {setToCoord} from '../store/actions/set-to-coord';
-// import {generate} from '../store/actions/generate';
-import {setTimes} from '../store/actions/set-times';
-import {getTimes} from '../utils/get-times';
+import {generateTimes} from '../store/commands';
+import {findPath} from '../store/commands';
 import {Store} from '../store';
-// import { nextBuildingSize } from '../store/reducers/next-building-size';
-// import {createSelector} from 'reselect';
 
 export type StateProps = Pick<Props
     , 'nextBuildingSize' 
     | 'fromCoord'
-    | 'toCoord' >;
+    | 'toCoord' 
+>;
 
 export type DispatchProps = Pick<Props
     , 'onFloorsQuantityInput'
@@ -23,17 +21,9 @@ export type DispatchProps = Pick<Props
     | 'onToFloorInput'
     | 'onToRoomInput'
     | 'onGenerate'
-    | 'onGo' >;
+    | 'onGo'
+>;
     
-// const nextBuildingSizeSelector = (state: Store) => state.nextBuildingSize;
-// const getNextBuilding = createSelector(
-//     nextBuildingSizeSelector,
-//     (size) => {
-//         return getTimes(size.floors, size.rooms);
-//     }
-// );
-// const newTimes: Store['times'] = getNextBuilding(state);
-
 export default connect<StateProps, DispatchProps>(
     (state: Store) => ({
         nextBuildingSize: state.nextBuildingSize,
@@ -60,11 +50,10 @@ export default connect<StateProps, DispatchProps>(
             dispatch(setToCoord({room: Number(e.target.value)}));
         },
         onGenerate() {
-            let newTimes = getTimes(5, 5);  //throught the OwnProps ???
-            dispatch(setTimes(newTimes));
+            dispatch(generateTimes());
         },
         onGo() {
-            // dispatch();
+            dispatch(findPath());
         }
     })
 )(

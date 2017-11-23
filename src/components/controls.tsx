@@ -35,7 +35,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                     <input 
                         placeholder='Placeholder' 
                         id='floors-quantity' 
-                        type='text' 
+                        type='number' 
                         className='validate'
                         value={nextBuildingSize.floors}
                         onChange={onFloorsQuantityInput} />
@@ -45,7 +45,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                     <input 
                         placeholder='Placeholder' 
                         id='rooms-quantity' 
-                        type='text' 
+                        type='number' 
                         className='validate'
                         value={nextBuildingSize.rooms}
                         onChange={onRoomsQuantityInput} />
@@ -58,7 +58,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                     <input 
                         placeholder='Placeholder' 
                         id='from-floor' 
-                        type='text' 
+                        type='number' 
                         className='validate'
                         value={fromCoord.floor}
                         onChange={onFromFloorInput} />
@@ -68,7 +68,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                     <input 
                         placeholder='Placeholder' 
                         id='from-room' 
-                        type='text' 
+                        type='number' 
                         className='validate'
                         value={fromCoord.room}
                         onChange={onFromRoomInput} />
@@ -78,7 +78,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                     <input 
                         placeholder='Placeholder' 
                         id='to-floor' 
-                        type='text' 
+                        type='number' 
                         className='validate'
                         value={toCoord.floor}
                         onChange={onToFloorInput} />
@@ -88,7 +88,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                     <input 
                         placeholder='Placeholder' 
                         id='to-room' 
-                        type='text' 
+                        type='number' 
                         className='validate'
                         value={toCoord.room}
                         onChange={onToRoomInput} />

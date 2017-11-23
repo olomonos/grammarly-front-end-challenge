@@ -26,6 +26,7 @@ body {
 }
 
 .building {
+  position: relative;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -39,6 +40,29 @@ body {
   height: 80%;
   border: 2px solid darkgrey;
   border-radius: 1px;
+}
+
+.lift-container {
+  position: absolute;
+  /* grid-area: 2 / 2 / 3 / 3; */
+  /* botton: ;
+  left: ; */
+  /* width: 100%; */
+  /* height: 100%; */
+  bottom: 0;
+  left: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  transition-property: bottom, left;
+}
+
+.lift {
+  width: 90%;
+  height: 90%;
+  border: 3px solid darkgrey;
+  border-radius: 1px;
+  background-color: #dce775;
 }
 
 .input-field {

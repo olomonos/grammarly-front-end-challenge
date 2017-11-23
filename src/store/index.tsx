@@ -1,8 +1,7 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
-// import {getTopScore} from './commands/get-top-score';
+import thunk from 'redux-thunk';
 
 export * from './types';
 
-export const store = createStore(reducers);
-// store.dispatch(getTopScore());
+export const store = createStore(reducers, applyMiddleware(thunk));

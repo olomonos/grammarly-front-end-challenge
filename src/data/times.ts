@@ -8,4 +8,4 @@ import {getTimes} from '../utils/get-times';
 //     [150, 30, 75]
 // ]
 
-export const Times: number[][] = getTimes(30, 30);
+export const Times: number[][] = getTimes(10, 10);

@@ -19,7 +19,7 @@ export function getTimes(floorsQuantity: number, roomsPerFloorsQuantity: number)
     } else if (roomsPerFloorsQuantity > maxFloorOrRoom) {
         throw "It's impossible to have more than 100 rooms per floor!";
     } else {
-        for (let i = 0; i < roomsPerFloorsQuantity; i++) {
+        for (let i = 0; i < floorsQuantity; i++) {
             let floor: number[] = [];
             for (let j = 0; j < roomsPerFloorsQuantity; j++) {
                 floor.push(getRndInteger(minTime, maxTime));

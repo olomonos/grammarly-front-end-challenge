@@ -3,6 +3,7 @@ export type Store = {
     times: Times,
     fromCoord: Coord,
     toCoord: Coord,
+    optimalPath: Coord[],
     nextBuildingSize: BuildingSize
 }
 
