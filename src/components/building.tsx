@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Store, Coord} from '../store/types';
 import {Apartment} from './apartment';
-import Lift from '../containers/lift';
+import {Lift} from '../components/lift';
 
 export type Props = {
     building: Store['times'],

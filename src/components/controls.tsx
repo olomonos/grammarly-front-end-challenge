@@ -30,8 +30,8 @@ export const Controls: React.StatelessComponent<Props> = ({
 }) => {
     return (
         <div className='controls'>
-            <div>
-                <div className='input-field'>
+            <div className='controls-line'>
+                <div className='input-field control-item-wide-1'>
                     <input 
                         placeholder='Placeholder' 
                         id='floors-quantity' 
@@ -41,7 +41,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                         onChange={onFloorsQuantityInput} />
                     <label>Floors</label>
                 </div>
-                <div className='input-field'>
+                <div className='input-field control-item-wide-2'>
                     <input 
                         placeholder='Placeholder' 
                         id='rooms-quantity' 
@@ -51,9 +51,9 @@ export const Controls: React.StatelessComponent<Props> = ({
                         onChange={onRoomsQuantityInput} />
                     <label>Rooms</label>
                 </div>
-                <a className='waves-effect waves-light btn' onClick={onGenerate}>generate</a>
+                <a className='waves-effect waves-light btn control-button' onClick={onGenerate}>generate</a>
             </div>
-            <div>
+            <div className='controls-line'>
                 <div className='input-field'>
                     <input 
                         placeholder='Placeholder' 
@@ -94,7 +94,7 @@ export const Controls: React.StatelessComponent<Props> = ({
                         onChange={onToRoomInput} />
                     <label>to room</label>
                 </div>
-                <a className='waves-effect waves-light btn' onClick={onGo}>go</a>
+                <a className='waves-effect waves-light btn control-button' onClick={onGo}>go</a>
             </div>
         </div>
     );
