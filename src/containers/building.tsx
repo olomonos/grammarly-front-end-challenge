@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {Building, Props} from '../components/building';
 import {Store} from '../store';
-import {removeStep} from '../store/actions/remove-step';
+import {nextStep} from '../store/commands/next-step';
 
 export type StateProps = Pick<Props, 'building' | 'liftCoord' | 'transitionTime'>;
 
@@ -22,7 +22,7 @@ export default connect<StateProps, DispatchProps>(
     }),
     dispatch => ({
         onLiftArrived() {
-            dispatch(removeStep())
+            dispatch(nextStep())
         }
     })
 )(
