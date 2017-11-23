@@ -53,6 +53,10 @@ body {
   border-bottom-right-radius: 0;
 }
 
+.apartment.hidden {
+  visibility: hidden;
+}
+
 .lift-container {
   position: absolute;
   display: grid;

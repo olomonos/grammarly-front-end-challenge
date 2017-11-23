@@ -1,5 +1,4 @@
-import {minBy} from 'lodash';
-import {Coord, Apt, Building} from '../store';
+import {Coord, Apt, Building} from '../store/types';
 
 function getNeighbours(
     building: Building,
@@ -10,8 +9,10 @@ function getNeighbours(
     if (building[currentFloor - 1] !== undefined) {
         neighbours.push(building[currentFloor - 1][currentRoom]);
     }
-    if (building[currentFloor] !== undefined) {
+    if (building[currentFloor][currentRoom - 1] !== undefined) {
         neighbours.push(building[currentFloor][currentRoom - 1]);
+    }
+    if (building[currentFloor][currentRoom + 1] !== undefined) {
         neighbours.push(building[currentFloor][currentRoom + 1]);            
     }
     if (building[currentFloor + 1] !== undefined) {
@@ -63,23 +64,16 @@ export function solve(times: number[][], from: Coord, to: Coord): Coord[] {
     const destinationApt = building[to.floor][to.room];
 
     while (unvisited.has(destinationApt)) {
-        // use .forEach to find minimum element in order to save an extra array
+        let minDistance = Infinity;
+        let currentApt: Apt | undefined;
 
-        let currentApt = minBy(Array.from(unvisited), 'distance');
-//----------
+        unvisited.forEach(value => {
+            if (value.distance < minDistance) {
+                currentApt = value;
+                minDistance = value.distance;
+            }
+        });
 
-        // let currentApt: Apt = {
-        //     coord: {floor: null, room: null},
-        //     passTime: null,
-        //     distance: Infinity
-        // }; 
-        // unvisited.forEach(value => {
-        //     if (value.distance < currentApt.distance) {
-        //         currentApt = value;
-        //     }
-        // });
-
-//----------
         if (currentApt !== undefined) {
             if (currentApt.distance == Infinity) {
                 throw 'no path';
@@ -91,26 +85,29 @@ export function solve(times: number[][], from: Coord, to: Coord): Coord[] {
                 );
 
                 for (let k = 0; k < neighbours.length; k++) {
-                    if (unvisited.has(neighbours[k])) {
-                        if (neighbours[k].passTime !== 0) {
-                            let newTentativeDistance: Apt['distance'] =
-                                currentApt.distance + neighbours[k].passTime;
-                            if (newTentativeDistance < neighbours[k].distance) {
-                                neighbours[k].distance = newTentativeDistance;
-                            }
-                }}}                             // curly braces ?
+                    if (unvisited.has(neighbours[k]) && neighbours[k].passTime !== 0) {
+                        let newTentativeDistance: Apt['distance'] =
+                            currentApt.distance + neighbours[k].passTime;
+                        if (newTentativeDistance < neighbours[k].distance) {
+                            neighbours[k].distance = newTentativeDistance;
+                        }
+                    }
+                }
                 unvisited.delete(currentApt);
-    }} else {
-        throw 'currentApt === undefined'
-    }}
+            }
+        } else {
+            throw 'currentApt === undefined'
+        }
+    }
 
-    let optPathDESC: Coord[] = [];
-    optPathDESC.push(destinationApt.coord);
+    const optPathDESC: Coord[] = [];
 
     let currentApt: Apt = destinationApt;
 
     while ((currentApt.coord.floor !== from.floor) || 
         (currentApt.coord.room !== from.room)) {
+
+        optPathDESC.push(currentApt.coord);
 
         let neighbours: Apt[] = getNeighbours(
             building,
@@ -118,16 +115,20 @@ export function solve(times: number[][], from: Coord, to: Coord): Coord[] {
             currentApt.coord.room
         );
 
-        let minDistCurrentNeighbour = minBy(neighbours, 'distance');
+        let minDistCurrentNeighbour = neighbours.reduce(
+            (minNeighbour, neighbour) => (
+                neighbour.distance < minNeighbour.distance ?
+                    neighbour :
+                    minNeighbour
+            )
+        );
 
         if (minDistCurrentNeighbour !== undefined) {
-            optPathDESC.push(minDistCurrentNeighbour.coord);
             currentApt = minDistCurrentNeighbour;  
         } else {
             throw 'cannot find neighbour';
         }
     }
-    // from is not a part of the path
-    optPathDESC.pop();
+    
     return optPathDESC.reverse();
 }

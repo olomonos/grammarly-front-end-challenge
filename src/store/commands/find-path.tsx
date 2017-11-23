@@ -13,7 +13,7 @@ export function findPath(): FindPath {
             
             dispatch(setOptimalPath(newPath));            
         } catch(e) {
-            // if (e.message == 'no path') dispatch(showNoPathMessage());
+            alert(e);
         }
     };
 };

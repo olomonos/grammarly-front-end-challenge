@@ -6,10 +6,14 @@ export type GenerateTimes = Command;
 
 export function generateTimes(): GenerateTimes { 
     return (dispatch, getState) => {
-    const {nextBuildingSize} = getState();
+        const {nextBuildingSize} = getState();
 
-    const newTimes = getTimes(nextBuildingSize.floors, nextBuildingSize.rooms);
-
-    dispatch(setTimes(newTimes));
+        try {
+            const newTimes = getTimes(nextBuildingSize.floors, nextBuildingSize.rooms);
+            
+            dispatch(setTimes(newTimes));            
+        } catch (e) {
+            alert(e);
+        }
     };
 };

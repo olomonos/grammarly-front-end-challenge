@@ -1,11 +1,7 @@
-import {getTimes} from '../utils/get-times';
-
-// export const Times: number[][] = [
-//     [100, 210, 200],
-//     [300, 0, 40],
-//     [91, 50, 20],
-//     [35, 17, 240],
-//     [150, 30, 75]
-// ]
-
-export const Times: number[][] = getTimes(10, 10);
+export const TIMES: number[][] = [
+    [100, 210, 200],
+    [300, 0, 40],
+    [91, 50, 20],
+    [35, 17, 240],
+    [150, 30, 75]
+]

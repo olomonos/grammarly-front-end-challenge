@@ -11,7 +11,7 @@ export const Apartment: React.StatelessComponent<Props> = ({coord, passTime, cla
     let id: string = coord.floor.toString() + ',' + coord.room.toString();
 
     return (
-        <div className={`apartment ${className}`} id={id} {...rest}>
+        <div className={`apartment ${className} ${passTime == 0 ? 'hidden' : ''}`} id={id} {...rest}>
             {passTime}
         </div>
     );
