@@ -127,5 +127,7 @@ export function solve(times: number[][], from: Coord, to: Coord): Coord[] {
             throw 'cannot find neighbour';
         }
     }
+    // from is not a part of the path
+    optPathDESC.pop();
     return optPathDESC.reverse();
 }

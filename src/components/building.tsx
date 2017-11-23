@@ -5,8 +5,8 @@ import Lift from '../containers/lift';
 
 export type Props = {
     building: Store['times'],
-    currentLiftCoord: Coord | undefined,
-    fromCoord: Store['fromCoord'],
+    liftCoord: Coord,
+    transitionTime: number,
     onLiftArrived: () => void
 }
 
@@ -20,14 +20,10 @@ export class Building extends React.Component<Props> {
     }
 
     componentWillReceiveProps(props: Props) {
-        if (props.currentLiftCoord &&
-            props.currentLiftCoord !== this.props.currentLiftCoord
+        if (props.liftCoord &&
+            props.liftCoord !== this.props.liftCoord
         ) {
-            const currentLiftCoord = props.currentLiftCoord;
-            const length = props.building.length;
-            const time = props.building[length - currentLiftCoord.floor - 1][currentLiftCoord.room];
-
-            this.setTimeout(() => props.onLiftArrived(), time);
+            this.setTimeout(() => props.onLiftArrived(), props.transitionTime);
         }
     }
 
@@ -36,76 +32,49 @@ export class Building extends React.Component<Props> {
     }
 
     render() {
+        const {building, liftCoord, transitionTime} = this.props;
 
-        const {building, currentLiftCoord, fromCoord} = this.props;
+        const liftHeight = 100 / building.length;
+        const liftWidth = 100 / building[0].length;
+        const liftBottoom = liftHeight * liftCoord.floor;
+        const liftLeft = liftWidth * liftCoord.room; 
 
-        const buildingGridStyles = {
-            gridTemplateColumns: 'repeat(' + building[0].length + ', 1fr)',
-            gridTemplateRows: 'repeat(' + building.length + ', 1fr)'      
-        };
-        
-        const frontDoorStyles = {
-            width: '50%',
-            height: '95%',
-            'align-self': 'end',
-            borderBottom: 'none',
-            borderBottomLeftRadius: '0',
-            borderBottomRightRadius: '0'
-        };
-    
-        let liftHeight = 100 / building.length;
-        let liftWidth = 100 / building[0].length;
-        let liftBottoom: number = liftHeight * fromCoord.floor;
-        let liftLeft: number = liftWidth * fromCoord.room; 
-        let passTime: number;
-
-        let liftTransitionStyles = {};
-
-        if (currentLiftCoord !== undefined) {
-            liftBottoom = liftHeight * currentLiftCoord.floor;
-            liftLeft = liftWidth * currentLiftCoord.room;
-            passTime = building[building.length - currentLiftCoord.floor - 1][currentLiftCoord.room] / 1000;
-        
-            liftTransitionStyles = {
-                transitionDuration: passTime.toString() + 's, ' + passTime.toString() + 's',
-                bottom: liftBottoom.toString() + '%',
-                left: liftLeft.toString() + '%'
-            };
-        }
-
-        let liftStyles = {
-            ...{
-                height: liftHeight.toString() + '%',
-                width: liftWidth.toString() + '%',
-                bottom: liftBottoom.toString() + '%',
-                left: liftLeft.toString() + '%'
-            }, 
-            ...liftTransitionStyles
+        const liftStyles = {
+            height: liftHeight.toString() + '%',
+            width: liftWidth.toString() + '%',
+            bottom: liftBottoom.toString() + '%',
+            left: liftLeft.toString() + '%',
+            transitionDuration: transitionTime.toString() + 'ms'
         };
 
-        let apartments = [];
-        apartments = building.map((floor, i) => {
+        const apartments = building.map((floor, i) => {
             return (
                 floor.map((room, j) => 
                     <Apartment 
                         key={i.toString() + ',' + j.toString()} 
-                        coord={{floor: building.length - i - 1, room: j}} 
+                        coord={{floor: building.length - i - 1, room: j}}
+                        passTime={building[i][j]}
                     /> 
                 )
             );
         });
-
+        
+        // building entrance
         apartments[building.length - 1][0] = <Apartment
+            className='entrance'
             key={'0,0'}
-            coord={{floor: 0, room: 0}} 
-            style={frontDoorStyles}
+            coord={{floor: 0, room: 0}}
+            passTime={building[building.length - 1][0]}            
         />;
 
         return (
             <div className='building-field'>
                 <div 
                     className='building'
-                    style={buildingGridStyles}
+                    style={{
+                        gridTemplateColumns: 'repeat(' + building[0].length + ', 1fr)',
+                        gridTemplateRows: 'repeat(' + building.length + ', 1fr)'      
+                    }}
                 >
                     {apartments}
                     <Lift style={liftStyles} />
