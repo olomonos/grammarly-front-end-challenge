@@ -59,6 +59,9 @@ body {
   min-height: 40px;
   border: 2px solid darkgrey;
   border-radius: 1px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .apartment.entrance {
