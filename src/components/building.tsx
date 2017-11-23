@@ -6,6 +6,7 @@ import Lift from '../containers/lift';
 export type Props = {
     building: Store['times'],
     currentLiftCoord: Coord | undefined,
+    fromCoord: Store['fromCoord'],
     onLiftArrived: () => void
 }
 
@@ -36,7 +37,7 @@ export class Building extends React.Component<Props> {
 
     render() {
 
-        const {building, currentLiftCoord} = this.props;
+        const {building, currentLiftCoord, fromCoord} = this.props;
 
         const buildingGridStyles = {
             gridTemplateColumns: 'repeat(' + building[0].length + ', 1fr)',
@@ -52,28 +53,34 @@ export class Building extends React.Component<Props> {
             borderBottomRightRadius: '0'
         };
     
-        let liftWidth: number = 0;
-        let liftHeight: number = 0;
-        let liftBottoom: number = 0;
-        let liftLeft: number = 0; 
-        let passTime: number = 0;
+        let liftHeight = 100 / building.length;
+        let liftWidth = 100 / building[0].length;
+        let liftBottoom: number = liftHeight * fromCoord.floor;
+        let liftLeft: number = liftWidth * fromCoord.room; 
+        let passTime: number;
+
+        let liftTransitionStyles = {};
 
         if (currentLiftCoord !== undefined) {
-            liftHeight = 100 / building.length;
-            liftWidth = 100 / building[0].length;
-            // liftBottoom = (100 / building.length) * (building.length - 1);
-            // liftLeft = (100 / building[0].length) * (building[0].length - 1);
             liftBottoom = liftHeight * currentLiftCoord.floor;
             liftLeft = liftWidth * currentLiftCoord.room;
             passTime = building[building.length - currentLiftCoord.floor - 1][currentLiftCoord.room] / 1000;
+        
+            liftTransitionStyles = {
+                transitionDuration: passTime.toString() + 's, ' + passTime.toString() + 's',
+                bottom: liftBottoom.toString() + '%',
+                left: liftLeft.toString() + '%'
+            };
         }
 
         let liftStyles = {
-            transitionDuration: passTime.toString() + 's, ' + passTime.toString() + 's',
-            bottom: liftBottoom.toString() + '%',
-            left: liftLeft.toString() + '%',
-            height: liftHeight.toString() + '%',
-            width: liftWidth.toString() + '%'
+            ...{
+                height: liftHeight.toString() + '%',
+                width: liftWidth.toString() + '%',
+                bottom: liftBottoom.toString() + '%',
+                left: liftLeft.toString() + '%'
+            }, 
+            ...liftTransitionStyles
         };
 
         let apartments = [];
@@ -99,13 +106,9 @@ export class Building extends React.Component<Props> {
                 <div 
                     className='building'
                     style={buildingGridStyles}
-                    // onTransitionEnd={onLiftArrived}
                 >
                     {apartments}
-                    <Lift 
-                        style={liftStyles} 
-                        // onTransitionEnd={onLiftArrived} 
-                    />
+                    <Lift style={liftStyles} />
                 </div>
             </div>
         );
