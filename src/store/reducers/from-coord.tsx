@@ -13,7 +13,9 @@ export const fromCoord: Reducer<Coord> = (
         case 'SetFromCoord': {
             return {...state, ...action.coord};
         }
-
+        case 'SetTimes': {
+            return {floor: 0, room: 0};
+        }
         default: {
             return state;
         }

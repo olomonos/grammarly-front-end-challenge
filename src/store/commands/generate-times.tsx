@@ -11,7 +11,7 @@ export function generateTimes(): GenerateTimes {
         try {
             const newTimes = getTimes(nextBuildingSize.floors, nextBuildingSize.rooms);
             
-            dispatch(setTimes(newTimes));            
+            dispatch(setTimes(newTimes)); 
         } catch (e) {
             alert(e);
         }

@@ -5,7 +5,7 @@ export type Store = {
     toCoord: Coord,
     optimalPath: Coord[],
     nextBuildingSize: BuildingSize
-}
+};
 
 export type Coord = {floor: number, room: number};
 
