@@ -5,12 +5,13 @@ body {
 }
 
 .app {
-  position: absolute;
-  /* height: 100%;
-  width: 100%; */
+  position: fixed;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 1fr 6fr;
   padding: 3%;
 }
 
