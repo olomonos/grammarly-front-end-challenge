@@ -20,9 +20,10 @@ export class Building extends React.Component<Props> {
     }
 
     componentWillReceiveProps(props: Props) {
-        if (props.liftCoord &&
-            props.liftCoord !== this.props.liftCoord
-        ) {
+        if (props.liftCoord && (
+            props.liftCoord.floor !== this.props.liftCoord.floor ||
+            props.liftCoord.room !== this.props.liftCoord.room
+        )) {
             this.setTimeout(() => props.onLiftArrived(), props.transitionTime);
         }
     }
@@ -47,17 +48,13 @@ export class Building extends React.Component<Props> {
             transitionDuration: transitionTime.toString() + 'ms'
         };
 
-        const apartments = building.map((floor, i) => {
-            return (
-                floor.map((room, j) => 
-                    <Apartment 
-                        key={i.toString() + ',' + j.toString()} 
-                        coord={{floor: building.length - i - 1, room: j}}
-                        passTime={building[i][j]}
-                    /> 
-                )
-            );
-        });
+        const apartments = building.map((floor, i) => floor.map((room, j) => 
+            <Apartment
+                key={i.toString() + ',' + j.toString()} 
+                coord={{floor: building.length - i - 1, room: j}}
+                passTime={building[i][j]}
+            />
+        ));
         
         // building entrance
         apartments[building.length - 1][0] = <Apartment
