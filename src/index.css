@@ -40,16 +40,16 @@ body {
 
 .building-field {
   grid-area: 3 / 2 / 4 / 3;
+  position: relative;
+  border: 2px solid darkgrey;
+  border-radius: 1px;
 }
 
 .building {
-  position: relative;
   display: grid;
   align-items: center;
   justify-items: center;
   height: 100%;
-  border: 2px solid darkgrey;
-  border-radius: 1px;
 }
 
 .apartment {
