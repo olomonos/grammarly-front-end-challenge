@@ -29,13 +29,13 @@ export function solve(times: number[][], from: Coord, to: Coord): Coord[] {
         (to.floor >= times.length) ||
         (to.room >= times[0].length)
     ) {
-        throw 'Start or destination point is outside the building.'
+        throw 'Start or destination point is outside the building.';
     }
     if (times[times.length - from.floor - 1][from.room] === 0) {
         throw 'Oops! The building is barricaded.';
     }
     if (times[times.length - to.floor - 1][to.room] === 0) {
-        throw 'Destination apartment does not exist.'
+        throw 'Destination apartment does not exist.';
     }
 
     const building: Building = [];
@@ -75,7 +75,7 @@ export function solve(times: number[][], from: Coord, to: Coord): Coord[] {
         });
 
         if (currentApt !== undefined) {
-            if (currentApt.distance == Infinity) {
+            if (currentApt.distance === Infinity) {
                 throw 'no path';
             } else {
                 let neighbours: Apt[] = getNeighbours(
@@ -96,7 +96,7 @@ export function solve(times: number[][], from: Coord, to: Coord): Coord[] {
                 unvisited.delete(currentApt);
             }
         } else {
-            throw 'currentApt === undefined'
+            throw 'currentApt === undefined';
         }
     }
 

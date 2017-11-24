@@ -8,4 +8,4 @@ export type SetNextBuildingSize = {
 export function setNextBuildingSize(nextSize: Partial<Store['nextBuildingSize']>): 
     SetNextBuildingSize {
     return {type: 'SetNextBuildingSize', nextSize};
-};
+}

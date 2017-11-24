@@ -7,4 +7,4 @@ export type SetToCoord = {
 
 export function setToCoord(coord: Partial<Coord>): SetToCoord {
     return {type: 'SetToCoord', coord};
-};
+}

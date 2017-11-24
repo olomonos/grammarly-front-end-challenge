@@ -58,4 +58,4 @@ export default connect<StateProps, DispatchProps>(
     })
 )(
     Controls
-)
+);

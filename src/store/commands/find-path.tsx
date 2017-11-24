@@ -12,8 +12,8 @@ export function findPath(): FindPath {
             const newPath = solve(times, fromCoord, toCoord);
             
             dispatch(setOptimalPath(newPath));            
-        } catch(e) {
+        } catch (e) {
             alert(e);
         }
     };
-};
+}

@@ -13,7 +13,7 @@ export type Props = {
     onToRoomInput: React.ChangeEventHandler<HTMLInputElement>,
     onGenerate: () => void,
     onGo: () => void
-}
+};
 
 export const Controls: React.StatelessComponent<Props> = ({
     nextBuildingSize,
@@ -29,72 +29,78 @@ export const Controls: React.StatelessComponent<Props> = ({
     onGo
 }) => {
     return (
-        <div className='controls'>
-            <div className='controls-line'>
-                <div className='input-field control-item-wide-1'>
+        <div className="controls">
+            <div className="controls-line">
+                <div className="input-field control-item-wide-1">
                     <input 
-                        placeholder='Placeholder' 
-                        id='floors-quantity' 
-                        type='number' 
-                        className='validate'
+                        placeholder="Placeholder" 
+                        id="floors-quantity" 
+                        type="number" 
+                        className="validate"
                         value={nextBuildingSize.floors}
-                        onChange={onFloorsQuantityInput} />
+                        onChange={onFloorsQuantityInput}
+                    />
                     <label>Floors</label>
                 </div>
-                <div className='input-field control-item-wide-2'>
+                <div className="input-field control-item-wide-2">
                     <input 
-                        placeholder='Placeholder' 
-                        id='rooms-quantity' 
-                        type='number' 
-                        className='validate'
+                        placeholder="Placeholder" 
+                        id="rooms-quantity" 
+                        type="number" 
+                        className="validate"
                         value={nextBuildingSize.rooms}
-                        onChange={onRoomsQuantityInput} />
+                        onChange={onRoomsQuantityInput}
+                    />
                     <label>Rooms</label>
                 </div>
-                <a className='waves-effect waves-light btn control-button' onClick={onGenerate}>generate</a>
+                <a className="waves-effect waves-light btn control-button" onClick={onGenerate}>generate</a>
             </div>
-            <div className='controls-line'>
-                <div className='input-field'>
+            <div className="controls-line">
+                <div className="input-field">
                     <input 
-                        placeholder='Placeholder' 
-                        id='from-floor' 
-                        type='number' 
-                        className='validate'
+                        placeholder="Placeholder" 
+                        id="from-floor" 
+                        type="number" 
+                        className="validate"
                         value={fromCoord.floor}
-                        onChange={onFromFloorInput} />
+                        onChange={onFromFloorInput}
+                    />
                     <label>from floor</label>
                 </div>
-                <div className='input-field'>
+                <div className="input-field">
                     <input 
-                        placeholder='Placeholder' 
-                        id='from-room' 
-                        type='number' 
-                        className='validate'
+                        placeholder="Placeholder" 
+                        id="from-room" 
+                        type="number" 
+                        className="validate"
                         value={fromCoord.room}
-                        onChange={onFromRoomInput} />
+                        onChange={onFromRoomInput}
+                    />
                     <label>from room</label>
                 </div>
-                <div className='input-field'>
+                <div className="input-field">
                     <input 
-                        placeholder='Placeholder' 
-                        id='to-floor' 
-                        type='number' 
-                        className='validate'
+                        placeholder="Placeholder" 
+                        id="to-floor" 
+                        type="number" 
+                        className="validate"
                         value={toCoord.floor}
-                        onChange={onToFloorInput} />
+                        onChange={onToFloorInput}
+                    />
                     <label>to floor</label>
                 </div>
-                <div className='input-field'>
+                <div className="input-field">
                     <input 
-                        placeholder='Placeholder' 
-                        id='to-room' 
-                        type='number' 
-                        className='validate'
+                        placeholder="Placeholder" 
+                        id="to-room" 
+                        type="number" 
+                        className="validate"
                         value={toCoord.room}
-                        onChange={onToRoomInput} />
+                        onChange={onToRoomInput} 
+                    />
                     <label>to room</label>
                 </div>
-                <a className='waves-effect waves-light btn control-button' onClick={onGo}>go</a>
+                <a className="waves-effect waves-light btn control-button" onClick={onGo}>go</a>
             </div>
         </div>
     );

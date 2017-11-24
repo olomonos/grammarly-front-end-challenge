@@ -9,10 +9,10 @@ export function nextStep(): NextStep {
 
         const {optimalPath, toCoord} = getState();
 
-        if (optimalPath.length == 1) {
+        if (optimalPath.length === 1) {
             dispatch(setFromCoord(toCoord));
         }
 
         dispatch(removeStep());
     };
-};
+}

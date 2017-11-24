@@ -11,13 +11,13 @@ export function getTimes(floorsQuantity: number, roomsPerFloorsQuantity: number)
     let times: number[][] = [];
         
     if (floorsQuantity < minFloorOrRoom) {
-        throw "At least one floor should exist!";
+        throw 'At least one floor should exist!';
     } else if (floorsQuantity > maxFloorOrRoom) {
-        throw "It's impossible to have more than 100 floors!";
+        throw 'It\'s impossible to have more than 100 floors!';
     } else if (roomsPerFloorsQuantity < minFloorOrRoom) {
-        throw "At least one room per floor should exist!";
+        throw 'At least one room per floor should exist!';
     } else if (roomsPerFloorsQuantity > maxFloorOrRoom) {
-        throw "It's impossible to have more than 100 rooms per floor!";
+        throw 'It\'s impossible to have more than 100 rooms per floor!';
     } else {
         for (let i = 0; i < floorsQuantity; i++) {
             let floor: number[] = [];

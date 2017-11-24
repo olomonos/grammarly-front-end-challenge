@@ -16,4 +16,4 @@ export function generateTimes(): GenerateTimes {
             alert(e);
         }
     };
-};
+}

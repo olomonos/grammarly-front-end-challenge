@@ -10,4 +10,4 @@ export default connect<StateProps>(
     })
 )(
     Building
-)
+);

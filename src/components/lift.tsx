@@ -7,13 +7,15 @@ export type Props = {
     currentCoord: Coord,
     transitionTime: number,
     onLiftArrived: () => void    
-} & React.HTMLAttributes<HTMLDivElement>
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export class Lift extends React.Component<Props> {
     private timeout: number | null = null;
     
-    private setTimeout(fn: () => any, time: number) {
-        if (this.timeout !== null) clearTimeout(this.timeout);
+    private setTimeout(fn: () => void, time: number) {
+        if (this.timeout !== null) {
+            clearTimeout(this.timeout);
+        }
         this.timeout = window.setTimeout(fn, time);
     }
 
@@ -27,7 +29,9 @@ export class Lift extends React.Component<Props> {
     }
 
     componentWillUnmount() {
-        if (this.timeout !== null) clearTimeout(this.timeout);
+        if (this.timeout !== null) {
+            clearTimeout(this.timeout);
+        }
     }
     
     render() {
@@ -56,9 +60,10 @@ export class Lift extends React.Component<Props> {
         return (
             <div
                 style={liftStyles}
-                className='lift-container'
-                {...rest}>        
-                <div className='lift' />
+                className="lift-container"
+                {...rest}
+            >        
+                <div className="lift" />
             </div>
         );
     }
