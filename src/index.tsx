@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {store} from './store';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.css';
 import './index.css';
@@ -15,4 +14,3 @@ ReactDOM.render(
 ,
   document.getElementById('root') as HTMLElement
 );
-registerServiceWorker();
