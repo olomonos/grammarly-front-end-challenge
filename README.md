@@ -39,3 +39,7 @@ Input: Move lift to floor 2 flat 1 (value 210).
 Expected lift movement: 
 
 [[0, 1], [0, 2], [1, 2], [2, 2], [2, 1]], total time 520 (=50+20+40+200+210).
+
+### Website:
+
+https://olomonos.github.io/grammarly-front-end-challenge/
