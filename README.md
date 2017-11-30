@@ -1,4 +1,4 @@
-It was a Frontend Challenge organized by Grammarly for the Frontend fwdays'17 Conference.
+There was a Frontend Challenge organized by Grammarly for the Frontend fwdays'17 Conference.
  
 ### Task:
 
@@ -24,13 +24,18 @@ Lift movement should be animated proportionally to the time needed to pass throu
  0 <= T[i, j] <= 5000
 
 ##### Example:
+```
 const A = [
   [100, 210, 200],
   [300, 0,   40],
   [91,  50,  20]
 ]
+```
 
 Current lift position: 0, 0 (value 91).
+
 Input: Move lift to floor 2 flat 1 (value 210).
+
 Expected lift movement: 
+
 [[0, 1], [0, 2], [1, 2], [2, 2], [2, 1]], total time 520 (=50+20+40+200+210).
