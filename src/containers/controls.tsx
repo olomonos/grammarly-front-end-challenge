@@ -10,7 +10,8 @@ import {Store} from '../store';
 export type StateProps = Pick<Props
     , 'nextBuildingSize' 
     | 'fromCoord'
-    | 'toCoord' 
+    | 'toCoord'
+    | 'disabled' 
 >;
 
 export type DispatchProps = Pick<Props
@@ -28,7 +29,8 @@ export default connect<StateProps, DispatchProps>(
     (state: Store) => ({
         nextBuildingSize: state.nextBuildingSize,
         fromCoord: state.fromCoord,
-        toCoord: state.toCoord
+        toCoord: state.toCoord,
+        disabled: state.optimalPath.length > 0
     }),
     dispatch => ({
         onFloorsQuantityInput(e) {
