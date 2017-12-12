@@ -6,7 +6,7 @@ import {nextStep} from '../store/commands/next-step';
 export type StateProps = Pick<Props
     , 'totalFloors'
     | 'totalRooms'
-    | 'currentCoord'
+    | 'targetCoord'
     | 'transitionTime'
 >;
 
@@ -16,7 +16,7 @@ export default connect<StateProps, DispatchProps>(
     (state: Store) => ({
         totalFloors: state.times.length,
         totalRooms: state.times[0].length,
-        currentCoord:  state.optimalPath.length > 0 ?
+        targetCoord:  state.optimalPath.length > 0 ?
             state.optimalPath[0] :
             state.fromCoord,
         transitionTime: state.optimalPath.length > 0 ?

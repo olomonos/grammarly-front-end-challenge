@@ -81,8 +81,6 @@ body {
   display: grid;
   align-items: center;
   justify-items: center;
-  transition-property: bottom, left;
-  transition-timing-function: linear;
 }
 
 .lift {
